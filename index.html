@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="content">
-  <h1><strong>ZipLoRA: </strong></h1>
+  <h1><strong>ZipLoRA: Any Subject in Any Style by Effectively Merging LoRAs</strong></h1>
   <p id="authors"><a href="https://virajshah.com/">Viraj Shah</a><a href="https://natanielruiz.github.io/">Nataniel Ruiz</a> <a href="">Forrester Cole</a	> <a href="">Erika Lu</a> <a href="https://slazebni.cs.illinois.edu/">Svetlana Lazebnik</a> <a href="http://people.csail.mit.edu/yzli/">Yuanzhen Li</a> <a href="https://varunjampani.github.io/">Varun Jampani</a><br>
     <br>
   <span style="font-size: 24px">Google Research
@@ -18,19 +18,18 @@
   <h3 style="text-align:center"><em>It’s like a photo booth, but once the subject is captured, it can be synthesized wherever your dreams take you…</em></h3>
     <font size="+2">
           <p style="text-align: center;">
-            <a href="https://arxiv.org/abs/2208.12242" target="_blank">[Paper]</a> &nbsp;&nbsp;&nbsp;&nbsp;
-	    (<font color="#C70039">new!</font>) <a href="https://github.com/google/ZipLoRA" target="_blank">[Dataset]</a> &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="" target="_blank">[Paper]</a> &nbsp;&nbsp;&nbsp;&nbsp;
             <a href="ZipLoRA_files/bibtex.txt" target="_blank">[BibTeX]</a>
           </p>
     </font>
 </div>
 <div class="content">
   <h2 style="text-align:center;">Abstract</h2>
-  <p>Large text-to-image models achieved a remarkable leap in the evolution of AI, enabling high-quality and diverse synthesis of images from a given text prompt. However, these models lack the ability to mimic the appearance of subjects in a given reference set and synthesize novel renditions of them in different contexts. In this work, we present a new approach for "personalization" of text-to-image diffusion models (specializing them to users' needs). Given as input just a few images of a subject, we fine-tune a pretrained text-to-image model (Imagen, although our method is not limited to a specific model) such that it learns to bind a unique identifier with that specific subject. Once the subject is embedded in the output domain of the model, the unique identifier can then be used to synthesize fully-novel photorealistic images of the subject contextualized in different scenes. By leveraging the semantic prior embedded in the model with a new autogenous class-specific prior preservation loss, our technique enables synthesizing the subject in diverse scenes, poses, views, and lighting conditions that do not appear in the reference images. We apply our technique to several previously-unassailable tasks, including subject recontextualization, text-guided view synthesis, appearance modification, and artistic rendering (all while preserving the subject's key features).</p>
+  <p>Methods for finetuning generative models for concept-driven personalization generally achieve strong results for subject-driven or style-driven generation. Recently, low-rank adaptations (LoRA) have been proposed as a parameter-efficient way of achieving concept-driven personalization. While recent work explores the combination of separate LoRAs to achieve joint generation of learned styles and subjects, existing techniques do not reliably address the problem, so that either subject fidelity or style fidelity are compromised. We propose ZipLoRA, a method to cheaply and effectively merge independently trained style and subject LoRAs in order to achieve generation of any user-provided subject in any user-provided style. Experiments on a wide range of subject and style combinations show that ZipLoRA can generate compelling results with meaningful improvements over baselines in subject and style fidelity while preserving the ability to recontextualize.</p>
 </div>
 <div class="content">
   <h2>Background</h2>
-  <p> Given a particular subject such as clock (shown in the real images on the left), it is very challenging to generate it in different contexts with state-of-the-art text-to-image models, while maintaining high fidelity to its key visual features. Even with dozens of iterations over a text prompt that contains a detailed description of the appearance of the clock (<em>"retro style yellow alarm clock with a white clock face and a yellow number three on the right part of the clock face in the jungle"</em>), the Imagen model [Saharia et al., 2022] can't reconstruct its key visual features (third column). Furthermore, even models whose text embedding lies in a shared language-vision space and can create semantic variations of the image, such as DALL-E2 [Ramesh et al., 2022], can neither reconstruct the appearance of the given subject nor modify the context (second column). In contrast, our approach (right) can synthesize the clock with high fidelity and in new contexts (<em>"a [V] clock in the jungle"</em>).</p>
+  <p> </p>
   <br>
   <img class="summary-img" src="./ZipLoRA_files/background.png" style="width:100%;"> <br>
 </div>
