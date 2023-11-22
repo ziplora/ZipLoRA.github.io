@@ -34,15 +34,15 @@
 </div> -->
 <div class="content">
   <h2>Approach</h2>
-  <p>a simple yet effective method to generate any subject in any style by cheaply merging independently trained LoRAs for subject and style.</p>
-  <hr style="height:20pt; visibility:hidden;" />
+  <p>A simple yet effective method to generate any subject in any style by cheaply merging independently trained LoRAs for subject and style.</p>
+  <hr style="height:5pt; visibility:hidden;" />
   <p>Our approach is based on three important observations:</p>
   <hr style="height:20pt; visibility:hidden;" />
-  <p><strong>Observation 1:</strong> Unlike previous versions of Stable Diffusion, SDXL is able to learn styles using just a single exemplar image by following a DreamBooth protocol without any human feedback.</p>
+  <p><em>Observation 1:</em> Unlike previous versions of Stable Diffusion, SDXL is able to learn styles using just a single exemplar image by following a DreamBooth protocol without any human feedback.</p>
   <img class="summary-img" src="./ZipLoRA_files/sdxl_style.jpg" style="width:70%;"> 
-  <p><strong>Observation 2:</strong> LoRA weight matrix for all layers are sparse. Most of the elements in the LoRA weight matrix have very small magnitude, and have little effect on generation quality and fidelity.</p>
+  <p><em>Observation 2:</em> LoRA weight matrix for all layers are sparse. Most of the elements in the LoRA weight matrix have very small magnitude, and have little effect on generation quality and fidelity.</p>
   <br>
-  <p><strong>Observation 3:</strong>Columns of the weight matrices of two independently trained LoRAs may have varying levels of ``alignment'' between each other, as measured by cosine similarity, for example. We find that directly summing columns with high magnitude of cosine similarity degrades performance of the merged model.</p>
+  <p><em>Observation 3:</em>Columns of the weight matrices of two independently trained LoRAs may have varying levels of ``alignment'' between each other, as measured by cosine similarity, for example. We find that directly summing columns with high magnitude of cosine similarity degrades performance of the merged model.</p>
   <br>
   <img class="summary-img" src="./ZipLoRA_files/insights.jpg" style="width:100%;">
     <!-- <figcaption></figcaption> -->
