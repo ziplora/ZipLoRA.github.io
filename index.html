@@ -22,7 +22,7 @@
           </p>
     </font>
 </div>
-<div class="content">
+<!-- <div class="content">
   <h2 style="text-align:center;">Abstract</h2>
   <p>Methods for finetuning generative models for concept-driven personalization generally achieve strong results for subject-driven or style-driven generation. Recently, low-rank adaptations (LoRA) have been proposed as a parameter-efficient way of achieving concept-driven personalization. While recent work explores the combination of separate LoRAs to achieve joint generation of learned styles and subjects, existing techniques do not reliably address the problem, so that either subject fidelity or style fidelity are compromised. We propose ZipLoRA, a method to cheaply and effectively merge independently trained style and subject LoRAs in order to achieve generation of any user-provided subject in any user-provided style. Experiments on a wide range of subject and style combinations show that ZipLoRA can generate compelling results with meaningful improvements over baselines in subject and style fidelity while preserving the ability to recontextualize.</p>
 </div>
@@ -31,19 +31,28 @@
   <p> </p>
   <br>
   <img class="summary-img" src="./ZipLoRA_files/background.png" style="width:100%;"> <br>
-</div>
+</div> -->
 <div class="content">
   <h2>Approach</h2>
-  <p> Our method takes as input a few images (typically 3-5 images suffice, based on our experiments) of a subject (e.g., a specific dog) and the corresponding class name (e.g. "dog"), and returns a fine-tuned/"personalized'' text-to-image model that encodes a unique identifier that refers to the subject. Then, at inference, we can implant the unique identifier in different sentences to synthesize the subjects in difference contexts.</p>
+  <p>a simple yet effective method to generate any subject in any style by cheaply merging independently trained LoRAs for subject and style.</p>
   <br>
-  <img class="summary-img" src="./ZipLoRA_files/high_level.png" style="width:100%;"> <br>
-  <p>Given ~3-5 images of a subject we fine tune a text-to-image diffusion in two steps: (a) fine tuning the low-resolution text-to-image model with the input images paired with a text prompt containing a unique identifier and the name of the class the subject belongs to (e.g., "A photo of a [T] dog”), in parallel, we apply a class-specific prior preservation loss, which leverages the semantic prior that the model has on the class and encourages it to generate diverse instances belong to the subject's class by injecting the class name in the text prompt (e.g., "A photo of a dog”). (b) fine-tuning the super resolution components with pairs of low-resolution and high-resolution images taken from our input images set, which enables us to maintain high-fidelity to small details of the subject.</p>
+  <p>Our approach is based on three important observations:</p>
   <br>
-  <img class="summary-img" src="./ZipLoRA_files/system.png" style="width:100%;"> <br>
+  <p><strong>Observation 1:</strong> Unlike previous versions of Stable Diffusion, SDXL is able to learn styles using just a single exemplar image by following a DreamBooth protocol without any human feedback.</p>
+  <img class="summary-img" src="./ZipLoRA_files/sdxl_style.jpg" style="width:100%;"> <br>
+  <p><strong>Observation 2:</strong> LoRA weight matrix $$\Delta W$$ for all layers are sparse. Most of the elements in the LoRA weight matrix $$\Delta W_i$$ have very small magnitude, and have little effect on generation quality and fidelity.</p>
+  <br>
+  <p><strong>Observation 3:</strong>Columns of the weight matrices of two independently trained LoRAs may have varying levels of ``alignment'' between each other, as measured by cosine similarity, for example. We find that directly summing columns with high magnitude of cosine similarity degrades performance of the merged model.</p>
+  <br>
+  <img class="summary-img" src="./ZipLoRA_files/sparse.jpg" style="width:45%;"> <img class="summary-img" src="./ZipLoRA_files/align.jpg" style="width:45%;"> <br>
+  <br>
+  <p>Based on these observations, we hypothesize that a method that operates akin to a zipper, aiming to reduce the quantity of similar-direction sums while preserving the content and style generation properties of the original LoRAs will yield more robust, higher-quality merges. Much like a zipper seamlessly joins two sides of a fabric, our proposed optimization-based approach finds a disjoint set of merger coefficients for blending the two LoRAs. This ensures that the merged LoRA adeptly captures both subject and style.</p>
+  <img class="summary-img" src="./ZipLoRA_files/sparse.jpg" style="width:100%;">
+  <br>
 </div>
 <div class="content">
   <h2>Results</h2>
-  <p>Results for re-contextualization of a bag and vase subject instances. By finetuning a model using our method we are able to generate different images of the a subject instance in different environments, with high preservation of subject details and realistic interaction between the scene and the subject. We display the conditioning prompts below each image. </p>
+  <p></p>
 <img class="summary-img" src="./ZipLoRA_files/results.png" style="width:100%;">
 </div>
 <div class="content">
