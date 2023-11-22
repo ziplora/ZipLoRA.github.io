@@ -44,10 +44,13 @@
   <br>
   <p><strong>Observation 3:</strong>Columns of the weight matrices of two independently trained LoRAs may have varying levels of ``alignment'' between each other, as measured by cosine similarity, for example. We find that directly summing columns with high magnitude of cosine similarity degrades performance of the merged model.</p>
   <br>
-  <img class="summary-img" src="./ZipLoRA_files/sparse.jpg" style="width:45%;"> <img class="summary-img" src="./ZipLoRA_files/align.jpg" style="width:45%;"> <br>
+  <figure class="half" style="display:flex">
+    <img class="summary-img" src="./ZipLoRA_files/sparse.jpg" style="width:40%;"> <img class="summary-img" src="./ZipLoRA_files/align.jpg" style="width:40%;"> 
+    <!-- <figcaption></figcaption> -->
+  </figure>
   <br>
   <p>Based on these observations, we hypothesize that a method that operates akin to a zipper, aiming to reduce the quantity of similar-direction sums while preserving the content and style generation properties of the original LoRAs will yield more robust, higher-quality merges. Much like a zipper seamlessly joins two sides of a fabric, our proposed optimization-based approach finds a disjoint set of merger coefficients for blending the two LoRAs. This ensures that the merged LoRA adeptly captures both subject and style.</p>
-  <img class="summary-img" src="./ZipLoRA_files/sparse.jpg" style="width:100%;">
+  <img class="summary-img" src="./ZipLoRA_files/method.jpg" style="width:100%;">
   <br>
 </div>
 <div class="content">
