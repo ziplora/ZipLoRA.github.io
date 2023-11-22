@@ -35,9 +35,9 @@
 <div class="content">
   <h2>Approach</h2>
   <p>a simple yet effective method to generate any subject in any style by cheaply merging independently trained LoRAs for subject and style.</p>
-  <br>
+  <hr style="height:20pt; visibility:hidden;" />
   <p>Our approach is based on three important observations:</p>
-  <br>
+  <hr style="height:20pt; visibility:hidden;" />
   <p><strong>Observation 1:</strong> Unlike previous versions of Stable Diffusion, SDXL is able to learn styles using just a single exemplar image by following a DreamBooth protocol without any human feedback.</p>
   <img class="summary-img" src="./ZipLoRA_files/sdxl_style.jpg" style="width:100%;"> <br>
   <p><strong>Observation 2:</strong> LoRA weight matrix $$\Delta W$$ for all layers are sparse. Most of the elements in the LoRA weight matrix $$\Delta W_i$$ have very small magnitude, and have little effect on generation quality and fidelity.</p>
