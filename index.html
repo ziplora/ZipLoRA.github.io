@@ -27,6 +27,11 @@
   <h2 style="text-align:center;">Abstract</h2 >
   <p>Methods for finetuning generative models for concept-driven personalization generally achieve strong results for subject-driven or style-driven generation. Recently, low-rank adaptations (LoRA) have been proposed as a parameter-efficient way of achieving concept-driven personalization. While recent work explores the combination of separate LoRAs to achieve joint generation of learned styles and subjects, existing techniques do not reliably address the problem, so that either subject fidelity or style fidelity are compromised. We propose ZipLoRA, a method to cheaply and effectively merge independently trained style and subject LoRAs in order to achieve generation of any user-provided subject in any user-provided style. Experiments on a wide range of subject and style combinations show that ZipLoRA can generate compelling results with meaningful improvements over baselines in subject and style fidelity while preserving the ability to recontextualize.</p>
 </div>
+<div class="content">
+  <h2>Results: Personalized Stylization</h2>
+  <p>ZipLoRA can generate stylizations of a specific object by combining various style and content LoRAs. Our method succeeds at both preserving the identity of the reference subject and capturing the unique characteristics of the reference style. We also provide comparisons with Direct Merge, Joint Training, and StyleDrop.</p>
+<img class="summary-img" src="./ZipLoRA_files/compare_main.jpg" style="width:100%;">
+</div>
 <!-- <div class="content">
   <h2>Background</h2>
   <p> </p>
@@ -51,11 +56,6 @@
   <p>Based on these observations, we hypothesize that a method that operates akin to a zipper, aiming to reduce the quantity of similar-direction sums while preserving the content and style generation properties of the original LoRAs will yield more robust, higher-quality merges. Much like a zipper seamlessly joins two sides of a fabric, our proposed optimization-based approach finds a disjoint set of merger coefficients for blending the two LoRAs. This ensures that the merged LoRA adeptly captures both subject and style.</p>
   <img class="summary-img" src="./ZipLoRA_files/method_dia.jpg" style="width:100%;">
   <br>
-</div>
-<div class="content">
-  <h2>Results: Personalized Stylization</h2>
-  <p>ZipLoRA can generate stylizations of a specific object by combining various style and content LoRAs. Our method succeeds at both preserving the identity of the reference subject and capturing the unique characteristics of the reference style. We also provide comparisons with Direct Merge, Joint Training, and StyleDrop.</p>
-<img class="summary-img" src="./ZipLoRA_files/compare_main.jpg" style="width:100%;">
 </div>
 <div class="content">
   <h2>Recontextualization</h2>
